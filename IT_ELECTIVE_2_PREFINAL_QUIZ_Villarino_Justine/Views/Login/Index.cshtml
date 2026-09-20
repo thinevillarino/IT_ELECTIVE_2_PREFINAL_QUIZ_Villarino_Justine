@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<section class="login-page">
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <div class="login-header">
+
+                <span class="login-subject">
+                    IT ELECTIVE 2
+                </span>
+
+                <h1>
+                    Welcome
+                </h1>
+
+                <p>
+                    Please sign in to view my portfolio.
+                </p>
+
+            </div>
+
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="login-error">
+                    @ViewBag.Error
+                </div>
+            }
+
+
+            <form asp-controller="Login"
+                  asp-action="Index"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+
+                <div class="login-form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input type="text"
+                           id="username"
+                           name="username"
+                           placeholder="Enter your username"
+                           autocomplete="username"
+                           required />
+
+                </div>
+
+
+                <div class="login-form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           placeholder="Enter your password"
+                           autocomplete="current-password"
+                           required />
+
+                </div>
+
+
+                <button type="submit"
+                        class="login-button">
+
+                    Login →
+
+                </button>
+
+            </form>
+
+
+            <div class="login-footer-text">
+
+                <span>
+                    JUSTINE VILLARINO
+                </span>
+
+                <p>
+                    My Portfolio • 2026
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

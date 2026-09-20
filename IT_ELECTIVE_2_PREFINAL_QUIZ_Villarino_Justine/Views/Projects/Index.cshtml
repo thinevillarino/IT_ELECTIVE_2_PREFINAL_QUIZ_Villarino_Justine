@@ -1,0 +1,178 @@
+﻿@model List<IT_ELECTIVE_2_PREFINAL_QUIZ_Villarino_Justine.Models.Project>
+
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<section class="projects-page">
+
+    <div class="container">
+
+        <!-- ==========================================
+             PAGE HEADER
+             ========================================== -->
+
+        <div class="projects-page-header">
+
+            <span>
+                IT ELECTIVE 2
+            </span>
+
+            <h1>
+                My Projects
+            </h1>
+
+
+            <!-- TABLE OF CONTENTS -->
+
+            <p class="projects-table-contents">
+
+                <a href="#prelim">
+                    PRELIM
+                </a>
+
+                <span>•</span>
+
+                <a href="#midterm">
+                    MIDTERM
+                </a>
+
+                <span>•</span>
+
+                <a href="#prefinal">
+                    PREFINAL
+                </a>
+
+            </p>
+
+        </div>
+
+
+
+        <!-- ==========================================
+             PRELIM PROJECTS
+             ========================================== -->
+
+        <div id="prelim"
+             class="project-category-anchor">
+
+            <div class="projects-card-grid">
+
+                @foreach (var project in Model.Where(
+                                p => p.Category == "Prelim"))
+                {
+                    <div class="project-simple-card">
+
+                        <span class="project-simple-category">
+                            @project.Category
+                        </span>
+
+                        <h2>
+                            @project.Title
+                        </h2>
+
+                        <div class="project-simple-line"></div>
+
+                        <a asp-controller="Projects"
+                           asp-action="Details"
+                           asp-route-id="@project.Id"
+                           class="project-simple-link">
+
+                            View Project ↓
+
+                        </a>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==========================================
+             MIDTERM PROJECTS
+             ========================================== -->
+
+        <div id="midterm"
+             class="project-category-anchor">
+
+            <div class="projects-card-grid">
+
+                @foreach (var project in Model.Where(
+                                p => p.Category == "Midterm"))
+                {
+                    <div class="project-simple-card">
+
+                        <span class="project-simple-category">
+                            @project.Category
+                        </span>
+
+                        <h2>
+                            @project.Title
+                        </h2>
+
+                        <div class="project-simple-line"></div>
+
+                        <a asp-controller="Projects"
+                           asp-action="Details"
+                           asp-route-id="@project.Id"
+                           class="project-simple-link">
+
+                            View Project ↓
+
+                        </a>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==========================================
+             PREFINAL PROJECTS
+             ========================================== -->
+
+        <div id="prefinal"
+             class="project-category-anchor">
+
+            <div class="projects-card-grid">
+
+                @foreach (var project in Model.Where(
+                                p => p.Category == "Prefinal"))
+                {
+                    <div class="project-simple-card">
+
+                        <span class="project-simple-category">
+                            @project.Category
+                        </span>
+
+                        <h2>
+                            @project.Title
+                        </h2>
+
+                        <div class="project-simple-line"></div>
+
+                        <a asp-controller="Projects"
+                           asp-action="Details"
+                           asp-route-id="@project.Id"
+                           class="project-simple-link">
+
+                            View Project ↓
+
+                        </a>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

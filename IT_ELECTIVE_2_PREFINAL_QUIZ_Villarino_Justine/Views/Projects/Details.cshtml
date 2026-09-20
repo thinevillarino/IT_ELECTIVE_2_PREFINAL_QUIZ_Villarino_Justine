@@ -1,0 +1,215 @@
+﻿@model IT_ELECTIVE_2_PREFINAL_QUIZ_Villarino_Justine.Models.Project
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section class="project-details-page">
+
+    <div class="container">
+
+        <div class="details-back-area">
+
+            <a asp-controller="Projects"
+               asp-action="Index"
+               class="details-back-button">
+
+                ← Back to My Projects
+
+            </a>
+
+        </div>
+
+
+        <div class="project-details-layout">
+
+            <div class="project-details-main">
+
+                <div class="project-details-image">
+
+                    <img src="@Model.Image"
+                         alt="@Model.Title" />
+
+                </div>
+
+
+                <div class="project-details-info">
+
+                    <span class="project-details-category">
+                        @Model.Category
+                    </span>
+
+
+                    <h1>
+                        @Model.Title
+                    </h1>
+
+
+                    <h3>
+                        About This Project
+                    </h3>
+
+                    <p>
+                        @Model.Description
+                    </p>
+
+
+                    <h3>
+                        Project Repository
+                    </h3>
+
+                    <p>
+                        You can view the source code and project files
+                        through my GitHub repository.
+                    </p>
+
+
+                    <a href="@Model.GitHubLink"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="details-github-button">
+
+                        View on GitHub ↗
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="project-comment-panel">
+
+                <span class="comment-label">
+                    COMMENTS
+                </span>
+
+
+                <h2>
+                    Leave a Comment
+                </h2>
+
+
+                <p class="comment-description">
+                    Share your feedback about this project.
+                </p>
+
+
+                @if (TempData["CommentError"] != null)
+                {
+                    <div class="comment-error">
+                        @TempData["CommentError"]
+                    </div>
+                }
+
+
+                @if (TempData["CommentSuccess"] != null)
+                {
+                    <div class="comment-success">
+                        @TempData["CommentSuccess"]
+                    </div>
+                }
+
+
+                <form asp-controller="Projects"
+                      asp-action="AddComment"
+                      method="post">
+
+                    @Html.AntiForgeryToken()
+
+
+                    <input type="hidden"
+                           name="projectId"
+                           value="@Model.Id" />
+
+
+                    <div class="comment-form-group">
+
+                        <label for="commentName">
+                            Name
+                        </label>
+
+                        <input id="commentName"
+                               type="text"
+                               name="name"
+                               maxlength="50"
+                               placeholder="Enter your name"
+                               required />
+
+                    </div>
+
+
+                    <div class="comment-form-group">
+
+                        <label for="commentMessage">
+                            Comment
+                        </label>
+
+                        <textarea id="commentMessage"
+                                  name="message"
+                                  rows="4"
+                                  maxlength="500"
+                                  placeholder="Write your comment here..."
+                                  required></textarea>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="comment-submit-button">
+
+                        Post Comment
+
+                    </button>
+
+                </form>
+
+
+                <div class="comments-divider"></div>
+
+
+                <h3 class="comments-title">
+                    Comments
+                </h3>
+
+
+                @if (Model.Comments.Count == 0)
+                {
+                    <p class="no-comments">
+                        No comments yet.
+                    </p>
+                }
+                else
+                {
+                    @foreach (var comment in
+                                    Model.Comments.OrderByDescending(c => c.DatePosted))
+                    {
+                        <div class="posted-comment">
+
+                            <div class="posted-comment-top">
+
+                                <strong>
+                                    @comment.Name
+                                </strong>
+
+                                <small>
+                                    @comment.DatePosted.ToString(
+                                    "MMM dd, yyyy - h:mm tt")
+                        </small>
+
+                    </div>
+
+                    <p>
+                        @comment.Message
+                    </p>
+
+                </div>
+                                }
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
